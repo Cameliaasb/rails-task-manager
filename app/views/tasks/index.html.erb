@@ -1,7 +1,33 @@
-<ul>
-<% @tasks.each do |task|  %>
-  <li> <%= link_to task.title, task_path(task) %> </li>
-<% end%>
-</ul>
 
-<p><%= link_to "Create new task", new_path %></p>
+<div class="text-center" style="width: 50%">
+
+  <ul class="list-unstyled">
+    <% @tasks.each do |task|  %>
+      <li>
+
+        <div class="d-flex justify-content-between mb-2" >
+          <div class="d-flex gap-3">
+            <%= link_to task.title, task_path(task)%>
+          </div>
+
+          <%# <%= link_to "Delete", delete_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+
+          <%= link_to delete_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %>
+           <div class="btn btn-warning">
+            <%= "Delete" %>
+           </div>
+          <%end %>
+
+        </div>
+
+      </li>
+    <% end%>
+
+  </ul>
+
+  <%= link_to new_path do %>
+    <div class="btn btn-primary">
+      <%= "Create new task"%>
+    </div>
+  <% end%>
+</div>
